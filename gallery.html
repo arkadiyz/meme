@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/galleryStyle.css">
     <title>Meme</title>
 </head>
-<body onload="init()">
-    <div class="gallery-grid">
 
+<body onload="init()">
+    <div class="container">
+        <div class="nav-bar">
+            <img src="img/LOGO.png" alt="" srcset=""class="logo">
+            <ul class="main-menu clean-list flex">
+                    <li><a href="#">Lifestyle</a></li>
+                    <li><a href="#">Music</a></li>
+                </ul>
+        </div>
+        <div class="search"><input type="text" placeholder="Enter search keyword"></div>
+        <div class="gallery-grid">
+        <div class="contact"><p> </p></div>
+        </div>
+        <div class="footer"><p class="logo">memegen</p></div>
     </div>
     <script src="js/galleryService.js"></script>
+    <script src="js/storageService.js"></script>
     <script src="js/galleryController.js"></script>
 </body>
+
 </html>
