@@ -13,7 +13,9 @@ function createImg(url,keyWords){
         
         id:gNextIdImgs++,
         url,
-        keyWords
+        keyWords,
+        posTextX:0,
+        posTextY:0
     }
 }
 

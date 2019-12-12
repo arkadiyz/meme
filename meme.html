@@ -11,8 +11,36 @@
 
 <body onload=" initCanvas()">
     <div class="panel">
-        <input type="text" class="input-text" placeholder="Enter text" onchange="draw(event)">
-        <button class="swich">Swich</button>
+        <input type="text" class="input-text" placeholder="Enter text" oninput="draw(event)">
+        <select onchange="onSetSize(this.value)">
+            <option value="50px">10</option>
+            <option value="55px">11</option>
+            <option value="60px">12</option>
+            <option value="65px">13</option>
+            <option value="70px">14</option>
+            <option value="75px">15</option>
+            <option value="80px">16</option>
+            <option value="85px">17</option>
+            <option value="90px">18</option>
+            <option value="95px">19</option>
+            <option value="100px">20</option>
+
+        </select>
+
+        <select onchange="onSetFont(this.value)">
+            <option value="Impact">Impact</option>
+            <option value="Courier New">Courier New</option>
+
+        </select>
+
+        fill-color: <input type="color" class="fill-color">
+        <button value="center" onclick="onSetAling(this.value)" class="aling-center">center</button>
+        <button value ="left" onclick="onSetAling(this.value)"class="aling-left">left</button>
+        <button value="right" onclick="onSetAling(this.value)" class="aling-right">right</button>
+        <button class="download-line" onclick="moveText(5)">Down  Line</button>
+        <button class="up-line" onclick="moveText(-5)">up Line</button>
+        <button class="swich-line" >Swich</button>
+
 
     </div>
     <canvas id="my-canvas" width="800" height="600">

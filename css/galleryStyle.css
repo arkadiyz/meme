@@ -89,6 +89,7 @@ li>:last-child {
 .footer {
     grid-row: 5/6;
     background-color: #ff7f00;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 .img-gallery:hover {
