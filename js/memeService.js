@@ -5,13 +5,7 @@ var gMeme = {
     selectedImgId: 5, selectedTxtIdx: 0,
 
     txts: [{
-        // line: '',
-        // size: '50px',
-        // font: 'Inpact',
-        // align: 'left',
-        // color: 'black',
-        // posX: 0,
-        // posY: 0
+
     }]
 }
 function createLine(line, size, font, aling, color, posX, posY) {
@@ -30,13 +24,11 @@ function addNewLine(line, size, font, aling, color, posX, posY) {
 }
 function setImg(img) {
     gMeme.selectedImgId = img.id;
-    // gMeme.selectedTxtIdx = gIndex++;
 }
 
 function setPosForTxt(posX, posY) {
     let img = loadFromStorage('img');
-    // img.posTextX = posX;
-    // img.posTextY = posY;
+
 }
 
 function setFont(font) {

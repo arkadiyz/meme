@@ -9,13 +9,6 @@ let txt;
 function initCanvas() {
 
     renderCanvas();
-    // gCanvas.addEventListener("touchstart", function (e) {
-    //     gCanvas.addEventListener("touchmove", function (ev) {
-    //         draw(ev.touches[0])
-    //     });
-
-
-    // });
 
 }
 function renderCanvas() {
@@ -52,9 +45,9 @@ function draw(ev) {
     debugger
     setPosTxt(offsetX, offsetY);
     setText(elText.value);
-    drawText(offsetX, offsetY);
-    // setPosForTxt(50, currPosText)
-    // currPosText += 50;
+    renderCanvas();
+
+
 }
 
 function drawText() {
@@ -127,8 +120,7 @@ function moveText(direction) {
     pos.posY += direction;
     setPosTxt(pos.posX, pos.posY);
     renderCanvas();
-    // drawText();
-    // setPosForTxt(pos.posX, pos.posY);
+
 }
 
 function onDeleteLine() {
@@ -140,12 +132,12 @@ function onAddNewLine() {
     let color = document.querySelector('.fill-color').value;
 
 
-    let offsetX = 20//ev.offsetX ;
-    let offsetY = 70//ev.offsetY ;
+    let offsetX = 20
+    let offsetY = 70
     setPosTxt(offsetX, offsetY);
 
     addNewLine(text, '50px', 'Impact', 'left', color, offsetX, offsetY);
-    // setText(elText.value);
+
     drawText();
 }
 
