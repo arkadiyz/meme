@@ -1,74 +1,116 @@
 'use strict'
 var gIndex = 1;
+
 var gMeme = {
     selectedImgId: 5, selectedTxtIdx: 0,
 
     txts: [{
-        line: 'I never eat Falafel',
-        size: '50px',
-        font: 'Inpact',
-        align: 'left',
-        color: 'black',
-        posX: 0,
-        posY: 0
+        // line: '',
+        // size: '50px',
+        // font: 'Inpact',
+        // align: 'left',
+        // color: 'black',
+        // posX: 0,
+        // posY: 0
     }]
 }
-function setImg(img) {
-
-    gMeme.selectedImgId = img.id;
-    gMeme.selectedTxtIdx = gIndex++;
-
+function createLine(line, size, font, aling, color, posX, posY) {
+    return {
+        line,
+        size,
+        font,
+        aling,
+        color,
+        posX,
+        posY
+    }
 }
+function addNewLine(line, size, font, aling, color, posX, posY) {
+    gMeme.txts.push(createLine(line, size, font, aling, color, posX, posY));
+}
+function setImg(img) {
+    gMeme.selectedImgId = img.id;
+    // gMeme.selectedTxtIdx = gIndex++;
+}
+
 function setPosForTxt(posX, posY) {
     let img = loadFromStorage('img');
     // img.posTextX = posX;
     // img.posTextY = posY;
 }
+
 function setFont(font) {
 
-    gMeme.txts[0].font = font;
+    gMeme.txts[gMeme.selectedTxtIdx].font = font;
 }
 
 function getMeme() {
     return gMeme;
 }
+
 function setText(txt) {
-    gMeme.txts[0].line = txt;
+    gMeme.txts[gMeme.selectedTxtIdx].line = txt;
 }
 
 function setTxtSize(size) {
-    gMeme.txts[0].size = size;
+    gMeme.txts[gMeme.selectedTxtIdx].size = size;
 }
+
 function setColorTxt(color) {
-    gMeme.txts[0].color = color;
+    gMeme.txts[gMeme.selectedTxtIdx].color = color;
 }
+
 function setTextAlign(aling) {
-    gMeme.txts[0].align = aling;
+    gMeme.txts[gMeme.selectedTxtIdx].align = aling;
 }
+
 function setPosTxt(posX, posY) {
-    gMeme.txts[0].posX = posX;
-    gMeme.txts[0].posY = posY;
+    gMeme.txts[gMeme.selectedTxtIdx].posX = posX;
+    gMeme.txts[gMeme.selectedTxtIdx].posY = posY;
+}
+
+function moveSelectedTxtId() {
+    debugger
+    if (gMeme.selectedTxtIdx + 1 === gMeme.txts.length) {
+        gMeme.selectedTxtIdx = 0
+    }else{
+        gMeme.selectedTxtIdx++;
+    }
+
 }
 
 function getText() {
-    return gMeme.txts[0].line;
+    return gMeme.txts[gMeme.selectedTxtIdx].line;
 }
+
 function getTxtSize() {
-    return gMeme.txts[0].size;
+    return gMeme.txts[gMeme.selectedTxtIdx].size;
 }
+
 function getFont() {
-    return gMeme.txts[0].font;
+    return gMeme.txts[gMeme.selectedTxtIdx].font;
 }
+
 function getColortxt() {
-    return gMeme.txts[0].color;
+    return gMeme.txts[gMeme.selectedTxtIdx].color;
 }
+
 function getTextAlign() {
-    return gMeme.txts[0].align;
+    return gMeme.txts[gMeme.selectedTxtIdx].align;
 }
+
 function getPosTxt() {
     var pos = {
-        posX: gMeme.txts[0].posX,
-        posY: gMeme.txts[0].posY
+
+        posX: gMeme.txts[gMeme.selectedTxtIdx].posX,
+        posY: gMeme.txts[gMeme.selectedTxtIdx].posY
     }
     return pos
+}
+function getGMemeTxts() {
+    return gMeme.txts;
+}
+function deleteRow(id) {
+    gMeme.txts.splice(0, 1);
+    initCanvas();
 }

@@ -4,22 +4,11 @@
 let gCanvas;
 let gCtx;
 let gImg;
-let currPosText = 50;
+let currselectedidx;
 let txt;
 function initCanvas() {
-    gCanvas = document.querySelector('#my-canvas');
-    gCtx = gCanvas.getContext('2d');
 
-    var img = loadFromStorage('img')
-    setImg(img);
-    gImg = new Image()
-    gImg.onload = () => {
-        gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
-        drawText();
-    };
-    gImg.src = img.url;
-    console.log(gCtx);
-
+    renderCanvas();
     // gCanvas.addEventListener("touchstart", function (e) {
     //     gCanvas.addEventListener("touchmove", function (ev) {
     //         draw(ev.touches[0])
@@ -29,37 +18,55 @@ function initCanvas() {
     // });
 
 }
+function renderCanvas() {
+    gCanvas = document.querySelector('#my-canvas');
+    gCtx = gCanvas.getContext('2d');
 
+    var img = loadFromStorage('img')
+    setImg(img);
+    gImg = new Image()
+    gImg.onload = () => {
+
+        gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
+        drawText();
+    };
+
+    gImg.src = img.url;
+}
 function draw(ev) {
 
     gCtx.save();
 
     var elText = document.querySelector('.input-text');
+    let offsetX ;
+    let offsetY;
+    let pos = getPosTxt();
+    if (!pos.posX && !pos.posY) {
+         offsetX = 20
+         offsetY = 50   
+    }else{
+        offsetX = pos.posX;
+        offsetY = pos.posY;
+    }
 
-
-    let offsetX = 150//ev.offsetX ;
-    let offsetY = 50//ev.offsetY ;
-    setPosTxt(offsetX,offsetY);
+    debugger
+    setPosTxt(offsetX, offsetY);
     setText(elText.value);
     drawText(offsetX, offsetY);
     // setPosForTxt(50, currPosText)
     // currPosText += 50;
 }
 
-function drawText(x, y) {
+function drawText() {
+    let txts = getGMemeTxts();
+    txts.forEach(function (txt) {
+        checkColor();
+        gCtx.font = 'bold ' + txt.size + ' ' + txt.font;
+        gCtx.fillStyle = txt.color;
+        onSetAling(txt.aling);
+        gCtx.fillText(txt.line, txt.posX, txt.posY);
+    })
 
-    let pos = getPosTxt()
-    pos.posX ;
-    pos.posY ;
-    gCtx.textAlign = getTextAlign();
-    // setPosTxt(x,y);
-    txt = getText();
-    setText(txt);
-    checkColor();
-    // txt +=elText.value;
-    gCtx.font = 'bold ' + getTxtSize() + ' ' + getFont();
-    gCtx.fillStyle = getColortxt();
-    gCtx.fillText(txt, pos.posX, pos.posY);
 
 }
 
@@ -77,26 +84,77 @@ function onSetFont(font) {
 function checkColor() {
     let color = document.querySelector('.fill-color').value;
     setColorTxt(color);
+
 }
 
 function onSetAling(aling) {
-    
+
     setTextAlign(aling);
+    let pos = getPosTxt()
+
+    switch (aling) {
+        case 'left':
+            gCtx.textAlign = 'left';
+            pos.posX = 20;
+            setPosTxt(pos.posX, pos.posY);
+            renderCanvas();
+            break;
+        case 'right':
+            gCtx.textAlign = 'right';
+            pos.posX = gCanvas.width - (getText().length) - pos.posX;
+            debugger
+            setPosTxt(pos.posX, pos.posY);
+            renderCanvas();
+            break
+        case 'center':
+            pos.posX = (gCanvas.width - getText().length) / 2;
+            setPosTxt(pos.posX, pos.posY);
+            renderCanvas();
+            break
+
+        default:
+            break;
+    }
+
+    setPosTxt(pos.posX, pos.posY);
 }
 
 function moveText(direction) {
     var txt = getText();
-    initCanvas();
-    //TODO: set new pos
-    
+
     let pos = getPosTxt()
-    pos.posX ;
-    pos.posY +=direction;
-    setPosTxt(pos.posX,pos.posY);
-    drawText();
+    pos.posX;
+    pos.posY += direction;
+    setPosTxt(pos.posX, pos.posY);
+    renderCanvas();
+    // drawText();
     // setPosForTxt(pos.posX, pos.posY);
 }
 
-function setCorserByAling() {
+function onDeleteLine() {
+    deleteRow();
+}
 
+function onAddNewLine() {
+    let text = document.querySelector('.input-text').value;
+    let color = document.querySelector('.fill-color').value;
+
+
+    let offsetX = 20//ev.offsetX ;
+    let offsetY = 70//ev.offsetY ;
+    setPosTxt(offsetX, offsetY);
+
+    addNewLine(text, '50px', 'Impact', 'left', color, offsetX, offsetY);
+    // setText(elText.value);
+    drawText();
+}
+
+function moveNextLine() {
+    moveSelectedTxtId();
+}
+
+function downloadCanvas(elLink) {
+    const data = gCanvas.toDataURL()
+    elLink.href = data
+    elLink.download = 'my-img.png'
 }
