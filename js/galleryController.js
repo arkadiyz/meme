@@ -15,7 +15,7 @@ function renderGallery() {
 }
 
 function openCanvas(imgId) {
-    debugger
+    
     var img  = getImgById(imgId);
     saveToStorage('img',img);
     window.open('meme.html');

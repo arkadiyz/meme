@@ -69,7 +69,7 @@ function setPosTxt(posX, posY) {
 }
 
 function moveSelectedTxtId() {
-    debugger
+    
     if (gMeme.selectedTxtIdx + 1 === gMeme.txts.length) {
         gMeme.selectedTxtIdx = 0
     } else {

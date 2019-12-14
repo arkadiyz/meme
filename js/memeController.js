@@ -66,7 +66,7 @@ function drawText() {
         gCtx.font = 'bold ' + txt.size + 'px ' + txt.font;
         gCtx.fillStyle = txt.color;
         gCtx.strokeStyle = txt.stroke;
-        debugger
+        
         gCtx.fillText(txt.line, txt.posX, txt.posY);
         gCtx.strokeText(txt.line, txt.posX, txt.posY);
     })
@@ -93,14 +93,13 @@ function checkFillColor() {
     let stroke = document.querySelector('.stroke-color-input').value;
     setColorTxt(fill);
 
-    debugger
+    
     setColorStrokTxt(stroke);
 
 }
 
 // function checkStrokColor() {
 //     let color = document.querySelector('.strok-color-input').value;
-//     debugger
 //     setColorTxt(color);
 
 // }
@@ -125,7 +124,7 @@ function onSetAling(aling) {
         case 'right':
             // gCtx.textAlign = 'right';
             pos.posX = gCanvas.width - (gCtx.measureText(txt).width);
-            // debugger
+            
             setPosTxt(pos.posX, pos.posY);
             renderCanvas();
             break;
@@ -172,7 +171,7 @@ function onAddNewLine() {
     let color = document.querySelector('.fill-color-input').value;
     let strok = document.querySelector('.stroke-color-input').value;
 
-    debugger
+    
     let offsetX = gCanvas.height - 250;
     let offsetY = gCanvas.width - 250;
     if (sumLine >= 1) {
