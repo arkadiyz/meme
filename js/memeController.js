@@ -4,13 +4,15 @@
 let gCanvas;
 let gCtx;
 let gImg;
-let currselectedidx;
+let sumLine = 0;
 let txt;
 function initCanvas() {
 
     renderCanvas();
 
 }
+
+
 function renderCanvas() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
@@ -22,27 +24,30 @@ function renderCanvas() {
 
         gCtx.drawImage(gImg, 0, 0, gCanvas.width, gCanvas.height);
         drawText();
+
     };
 
     gImg.src = img.url;
+
 }
-function draw(ev) {
+function draw() {
 
     gCtx.save();
 
     var elText = document.querySelector('.input-text');
-    let offsetX ;
+
+    let offsetX;
     let offsetY;
     let pos = getPosTxt();
     if (!pos.posX && !pos.posY) {
-         offsetX = 20
-         offsetY = 50   
-    }else{
+        offsetX = 70
+        offsetY = 50
+    } else {
         offsetX = pos.posX;
         offsetY = pos.posY;
     }
 
-    debugger
+
     setPosTxt(offsetX, offsetY);
     setText(elText.value);
     renderCanvas();
@@ -52,58 +57,83 @@ function draw(ev) {
 
 function drawText() {
     let txts = getGMemeTxts();
-    txts.forEach(function (txt) {
-        checkColor();
-        gCtx.font = 'bold ' + txt.size + ' ' + txt.font;
-        gCtx.fillStyle = txt.color;
-        onSetAling(txt.aling);
-        gCtx.fillText(txt.line, txt.posX, txt.posY);
-    })
 
+    txts.forEach(function (txt) {
+        checkFillColor();
+        if (!txt.size) {
+            txt.size = 50;
+        }
+        gCtx.font = 'bold ' + txt.size + 'px ' + txt.font;
+        gCtx.fillStyle = txt.color;
+        gCtx.strokeStyle = txt.stroke;
+        debugger
+        gCtx.fillText(txt.line, txt.posX, txt.posY);
+        gCtx.strokeText(txt.line, txt.posX, txt.posY);
+    })
+    return
 
 }
 
 function onSetSize(size) {
 
-    var elText = document.querySelector('.input-text');
-    elText.value = '';
-    setTxtSize(size);
+
+    setTxtSize(getTxtSize() + size);
+    renderCanvas()
+
 }
 
 function onSetFont(font) {
+
     setFont(font);
+    renderCanvas()
 }
 
-function checkColor() {
-    let color = document.querySelector('.fill-color').value;
-    setColorTxt(color);
+function checkFillColor() {
+    let fill = document.querySelector('.fill-color-input').value;
+    let stroke = document.querySelector('.stroke-color-input').value;
+    setColorTxt(fill);
+
+    debugger
+    setColorStrokTxt(stroke);
 
 }
+
+// function checkStrokColor() {
+//     let color = document.querySelector('.strok-color-input').value;
+//     debugger
+//     setColorTxt(color);
+
+// }
 
 function onSetAling(aling) {
 
     setTextAlign(aling);
-    let pos = getPosTxt()
+    let pos = getPosTxt();
+
+
+    let txt = getText();
+
+    console.log(gCtx.measureText(txt));
 
     switch (aling) {
         case 'left':
-            gCtx.textAlign = 'left';
+            // gCtx.textAlign = 'left';
             pos.posX = 20;
             setPosTxt(pos.posX, pos.posY);
             renderCanvas();
             break;
         case 'right':
-            gCtx.textAlign = 'right';
-            pos.posX = gCanvas.width - (getText().length) - pos.posX;
-            debugger
+            // gCtx.textAlign = 'right';
+            pos.posX = gCanvas.width - (gCtx.measureText(txt).width);
+            // debugger
             setPosTxt(pos.posX, pos.posY);
             renderCanvas();
-            break
+            break;
         case 'center':
             pos.posX = (gCanvas.width - getText().length) / 2;
             setPosTxt(pos.posX, pos.posY);
             renderCanvas();
-            break
+            break;
 
         default:
             break;
@@ -111,6 +141,16 @@ function onSetAling(aling) {
 
     setPosTxt(pos.posX, pos.posY);
 }
+
+// function checkLength() {
+//     let txt = getText();
+    
+//     if ((gCtx.measureText(txt).width+75) > gCanvas.width) {
+//         setTxtSize(getTxtSize()-75-50);
+       
+//     }
+
+// }
 
 function moveText(direction) {
     var txt = getText();
@@ -129,16 +169,22 @@ function onDeleteLine() {
 
 function onAddNewLine() {
     let text = document.querySelector('.input-text').value;
-    let color = document.querySelector('.fill-color').value;
+    let color = document.querySelector('.fill-color-input').value;
+    let strok = document.querySelector('.stroke-color-input').value;
 
+    debugger
+    let offsetX = gCanvas.height - 250;
+    let offsetY = gCanvas.width - 250;
+    if (sumLine >= 1) {
+        offsetX = (250, gCanvas.height / 2);
+        offsetY = getRandomInt(250, gCanvas.width / 2);
 
-    let offsetX = 20
-    let offsetY = 70
-    setPosTxt(offsetX, offsetY);
+    }
+    sumLine++;
 
-    addNewLine(text, '50px', 'Impact', 'left', color, offsetX, offsetY);
-
-    drawText();
+    addNewLine(text, 50, 'Impact', 'left', color,strok, offsetX, offsetY);
+    moveSelectedTxtId();
+    renderCanvas()
 }
 
 function moveNextLine() {
@@ -149,4 +195,8 @@ function downloadCanvas(elLink) {
     const data = gCanvas.toDataURL()
     elLink.href = data
     elLink.download = 'my-img.png'
+}
+function getRandomInt(min, max) {
+
+    return Math.floor(Math.random() * (max - min)) + min;
 }
