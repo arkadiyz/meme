@@ -7,55 +7,11 @@
     display: flex;
 }
 
-
-
-.div-header {
+body {
     width: 100%;
-    min-height: 10px;
-    display:flex;
-    position: fixed;
-    background-color: #ff7f00;
-    
+    height: 100%;
 }
 
-.main-logo {
-    width: 250px;
-    height: 55px;
-    padding: 10px;
-    padding-left: 24%;
-
-}
-
-li {
-    padding: 20px;
-    transition: transform .3s;
-    
-
-}
-
-a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #ffffff;
-
-}
-
-li>:last-child {
-    /* border-style: groove; */
-    margin-right: 40px;
-}
-
-.main-menu {
-    padding-top: 10px;
-    padding-left: 28%;
-}
-li:hover {
-    /* transform: scaleY(1.5 );     */
-    background: rgba(224, 209, 0, 0.144);
-    border-radius: 12%;
-
-
-}
 .container {
     max-width: 980px;
     margin: 0 auto;
@@ -66,8 +22,42 @@ li:hover {
     grid-template-columns: auto;
 }
 
-.about-btn{
-    transition: transform .2s;
+.div-header {
+    width: 100%;
+    /* min-height: 10px; */
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #ff7f00;
+}
+
+.main-logo {
+    width: 133px;
+    height: 22px;
+    padding: 10px;
+    grid-row: 2/2;
+}
+
+li {
+    padding: 15px;
+}
+
+a {
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+li>:last-child {
+    /* border-style: groove; */
+    margin-right: 40px;
+    /* text-decoration: none;     */
+}
+
+.main-menu {
+    /* margin-left: 100px; */
+    grid-row: 2/2;
+    grid-column: -1/-1;
+    /* padding: 10px; */
 }
 
 .search {
@@ -83,8 +73,9 @@ li:hover {
     display: grid;
     height: 100%;
     width: 100%;
-    grid-template-columns: repeat(3,minmax(3px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    /* grid-template-rows: auto; */
     background-color: #e3e3e3;
 }
 
@@ -93,35 +84,35 @@ li:hover {
     grid-column: auto;
     max-width: 353px;
     max-height: 278px;
-    border-radius: 20px;
+    /* margin-block-end: 20px; */
+    /* margin: 20px; */
     margin-top: 10px;
     margin-bottom: 10px;
     transition: transform .2s;
+    /* Animation */
 }
 
 .img-gallery:hover {
     transform: scale(1.2);
-
-
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .contact {
     grid-row: 4/5;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 510px; 
-
+    grid-template-rows: 510px;
+    /* display: flex; */
 }
 
 .img-photo {
-    grid-row: 1/2;
+    grid-row: 1/1;
     grid-column: 1/2;
-    width: 300px;
-    height: 300px;
+    width: 500px;
+    height: 500px;
     border: 7px solid white;
     border-radius: 50%;
-    margin-top: 10%;
-    margin: auto;
+    margin-left: 10%;
 }
 
 .description {
@@ -152,9 +143,8 @@ li:hover {
 .btn-contact-div {
     grid-row: 1/1;
     grid-column: 2/3;
-    display: flex;
     align-items: flex-end;
-    padding-bottom: 90px;
+    display: flex;
 }
 
 .btn-contact {
@@ -179,37 +169,44 @@ li:hover {
     color: azure;
     font-family: Impact;
     transition: transform .2s;
+    /* align-items: center; */
 }
 
-
+.btn-contact:hover {
+    transform: scale(1.2);
+    /* align-items: center; */
+}
 
 .align-items-flex-end {
     align-items: flex-end;
 }
 .footer {
-    height: 60px;
     grid-row: 5/-1;
     grid-column: 1/-1;
     background-color: #ff7f00;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     flex-direction: column;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #ff7f00;
-    color: white;
-    font-size: 25px;
-    text-align: center;
 }
 
+.logo-footer {
 
-.description-footer{
-    justify-content: center;
+    width: 1200px;
+    height: 150px;
+    background-color: #ff7f00;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: ;
+    font-size: 25px;
+    color: aliceblue;
+}
+.description-footer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     font-family: Impact;
     font-size: 15px;
-    color: aliceblue;
+
+
 }
