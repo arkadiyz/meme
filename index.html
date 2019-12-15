@@ -3,27 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/galleryStyle.css">
     <title>Meme</title>
 </head>
 
 <body onload="init()">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="div-header">
+
+        <div class="screen" onclick="toggleMenu()"></div>
         <img src="img/LOGO.png" alt="" srcset="" class="main-logo">
-        <div class="main-menu">
-            <ul class=" flex clean-list ">
-                <li><a href="#">Gallery</a></li>
+        <div class="main-menu-div">
+            <div class="screen" onclick="toggleMenu()"></div>
+            <nav class="main-nav  flex  align-center">
+                <button id="menu-btn" class="menu-btn" onclick="toggleMenu()"><img class="hamburger-img"
+                        src="img/hamburger.png" alt=""></button>
+                <ul class="main-menu clean-list flex">
+                    <li>
+                        <a>Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#memes">Memes</a>
+                    </li>
+                    <li>
+                        <a href="contact">About</a>
+                    </li>
+        </div>
+
+        </nav>
+        <!-- <ul class="menu  flex clean-list ">
+                <li ><a href="#">Gallery</a></li>
                 <li><a class="about-btn" href="#contact">About</a></li>
             </ul>
-        </div>
+            <div class="hamburger "><button class="hamburger-btn" onclick="toggleMenu()"><img class="hamburger-img"src="img/hamburger.png" alt=""></button></div> -->
+
     </div>
+    </div>
+
+
+
 
     <div class="container">
 
-        <div class="search">
+        <!-- <div class="search">
             <input type="text" placeholder="Enter search keyword">
-        </div>
+        </div> -->
         <div class="gallery-grid">
 
 
@@ -45,11 +70,11 @@
                 <button class="btn-contact ">
                     <p class="contact-logo-btn ">IN</p>
                 </button>
-                <button class="btn-contact ">
-                    <p class="contact-logo-btn">F</p>
+                <button class="btn-contact">
+                    <a  href="https://www.facebook.com/profile.php?id=100000159426571" class="contact-logo-btn" >F</a>
                 </button>
                 <button class="btn-contact ">
-                    <p class="contact-logo-btn">GIT</p>
+                    <a  href="https://github.com/arkadiyz" class="contact-logo-btn">GIT</a>
                 </button>
             </div>
         </div>
@@ -57,9 +82,13 @@
             <p class="logo-footer">memegen</p>
             <p class="description-footer">all rights reserved 2019</p>
         </div>
+
+
         <script src="js/galleryService.js"></script>
         <script src="js/storageService.js"></script>
         <script src="js/galleryController.js"></script>
+
+
 </body>
 
 </html>

@@ -11,14 +11,29 @@
 </head>
 
 <body onload=" initCanvas()">
+    <div class="screen" onclick="toggleMenu()"></div>
 
     <div class="div-header">
         <img src="img/LOGO.png" alt="" srcset="" class="main-logo">
-        <div class="main-menu flex">
-        <ul class=" flex clean-list ">
-            <li><a href="#">Gallery</a></li>
-            <li><a class="about-btn" href="#contact">About</a></li>
-        </ul>
+        <div class="main-menu-div flex">
+            <div class="screen" onclick="toggleMenu()"></div>
+
+            <nav class="main-nav  flex ">
+                <button id="menu-btn" class="menu-btn" onclick="toggleMenu()"><img class="hamburger-img"
+                        src="img/hamburger.png" alt=""></button>
+                <ul class="main-menu clean-list flex">
+                    <li>
+                        <a>Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#memes">Memes</a>
+                    </li>
+                    <li>
+                        <a href="contact">About</a>
+                    </li>
+        </div>
+
+        </nav>
     </div>
     </div>
     <div class="container">
@@ -34,8 +49,10 @@
             <!-- <div class="btns-panel-2"> -->
 
 
-            <button class="increase-btn" onclick="onSetSize(15)"><img class="img-btn" src="img/ICONS/increase font - icon.png"></button>
-            <button class="decrease-btn" onclick="onSetSize(-15)"><img class="img-btn" src="img/ICONS/decrease font - icon.png"></button>
+            <button class="increase-btn" onclick="onSetSize(15)"><img class="img-btn"
+                    src="img/ICONS/increase font - icon.png"></button>
+            <button class="decrease-btn" onclick="onSetSize(-15)"><img class="img-btn"
+                    src="img/ICONS/decrease font - icon.png"></button>
             <button class="left-btn" value="left" onclick="onSetAling(this.value)" class="aling-left"><img
                     class="img-btn" src="img/ICONS/align-to-left.png"></button>
             <button class="center-btn" value="center" onclick="onSetAling(this.value)" class="aling-center"><img
@@ -60,21 +77,21 @@
             <button class="up-line" onclick="moveText(-5)"><img class="img-btn" src="img/ICONS/move-up.png"></button>
             <button class="download-line" onclick="moveText(5)"><img class="img-btn"
                     src="img/ICONS/move-down.png"></button>
-            <button href="#" onclick="downloadCanvas(this)" class="download-btn btns-share-download"
-                download="">Download</button>
-            <button href="#" onclick="downloadCanvas(this)" class="share-btn btns-share-download"
-                download="">Shere</button>
+            <button href="#" download="myImage.jpg" onclick="downloadCanvas(this)"
+                class="download-btn btns-share-download">Download</button>
+            <button href="#" class="share-btn btns-share-download" type="submit">Shere</button>
 
             <!-- </div> -->
             <div class="shapes"></div>
 
         </div>
 
-        <canvas id="my-canvas" width="800" height="600">
+        <canvas id="my-canvas" width="500" height="500">
             Update your browser to enjoy canvas!
         </canvas>
-    </div>
 
+
+    </div>
     <div class="footer">
         <p class="logo-footer">memegen</p>
         <p class="description-footer">all rights reserved 2019</p>

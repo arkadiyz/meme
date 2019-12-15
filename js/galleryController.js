@@ -20,3 +20,7 @@ function openCanvas(imgId) {
     saveToStorage('img',img);
     window.open('meme.html');
 }
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
+}
+

@@ -167,7 +167,7 @@ function onDeleteLine() {
 }
 
 function onAddNewLine() {
-    let text = document.querySelector('.input-text').value;
+    let text = document.querySelector('.input-text').value="";
     let color = document.querySelector('.fill-color-input').value;
     let strok = document.querySelector('.stroke-color-input').value;
 
@@ -187,15 +187,31 @@ function onAddNewLine() {
 }
 
 function moveNextLine() {
+
     moveSelectedTxtId();
+    document.querySelector('.input-text').value = getText();
+    document.querySelector('.fill-color-input').value = getColortxt();
+    document.querySelector('.stroke-color-input').value=getColorStrokTxt();
 }
 
 function downloadCanvas(elLink) {
-    const data = gCanvas.toDataURL()
-    elLink.href = data
-    elLink.download = 'my-img.png'
+    //  const data = gCanvas.toDataURL('download-btn');
+    //  elLink.href = gCanvas.toDataURL("image/png");
+
+    // elLink.href = imgContent
+    // elLink.href = data
+    // elLink.download = 'my-img.png';
+    var image = gCanvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+    var link = document.createElement('a');
+    link.download = "my-image.png";
+    link.href = image;
+    link.click();
+    debugger
 }
 function getRandomInt(min, max) {
 
     return Math.floor(Math.random() * (max - min)) + min;
+}
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }
